@@ -1,10 +1,19 @@
+type AlignOptions =
+  | 'flex-start'
+  | 'flex-end'
+  | 'center'
+  | 'space-between'
+  | 'space-around'
+  | 'stretch'
+  | 'baseline';
+
 export type ContainerProps = {
-  fluid?: boolean;
   position?: string;
-  justify?: string;
-  alignItems?: string;
+  justify?: AlignOptions;
+  alignItems?: AlignOptions;
   bgColor?: string;
-  direction?: string;
+  direction?: 'row' | 'column';
+  container?: boolean;
   width?: string;
   height?: string;
   margin?: string;
