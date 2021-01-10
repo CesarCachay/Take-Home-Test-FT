@@ -1,10 +1,19 @@
 import React from 'react';
+import styled from 'styled-components';
+import { Container, Typography } from 'components/atoms';
+
+const HomeContainer = styled(Container)`
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+`;
 
 const Home: React.FC<{ path: string }> = () => {
   return (
-    <div>
-      <h1>This is the home page</h1>
-    </div>
+    <HomeContainer>
+      <Typography>Home</Typography>
+    </HomeContainer>
   );
 };
 
