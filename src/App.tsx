@@ -1,5 +1,8 @@
 import React from 'react';
 import { getUsers, getUserProfile, searchUsers } from 'services';
+import { Router } from '@reach/router';
+import { About, NotFound } from 'components/layout';
+import { Home } from 'components/organisms';
 
 const App: React.FC = () => {
   React.useEffect(() => {
@@ -9,9 +12,11 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      Starting project called take-home-test using React JS and Typescript
-    </div>
+    <Router>
+      <Home path='/' />
+      <About path='/about' />
+      <NotFound default />
+    </Router>
   );
 };
 
