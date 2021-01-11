@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FlexContainer } from 'components/atoms';
 import { Link } from '@reach/router';
+import theme from 'util/theme';
 
 const NavbarContainer = styled(FlexContainer)`
   justify-content: space-between;
@@ -20,7 +21,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 
   &:hover {
-    color: green;
+    color: ${theme.colors.placeholderColor};
   }
 `;
 

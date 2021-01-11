@@ -12,6 +12,7 @@ export type ContainerProps = {
   justify?: AlignOptions;
   alignItems?: AlignOptions;
   bgColor?: string;
+  borderColor?: string;
   direction?: 'row' | 'column';
   container?: boolean;
   width?: string;

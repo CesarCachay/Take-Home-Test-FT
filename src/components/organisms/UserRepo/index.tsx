@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UserRepo: React.FC = () => {
+const UserRepo: React.FC<{ path: string }> = () => {
   return (
     <div>
       <h1>This is user repo page</h1>

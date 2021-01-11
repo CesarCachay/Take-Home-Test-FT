@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { getUsers } from 'services';
 import { Router } from '@reach/router';
 import { Navbar } from 'components/molecules';
-import { Home } from 'components/organisms';
+import { Home, UserProfile, UserRepo } from 'components/organisms';
 import { About, NotFound } from 'components/layout';
 import theme from 'util/theme';
 
@@ -37,6 +37,8 @@ const App: React.FC = () => {
       <ThemeProvider theme={theme}>
         <Router>
           <Home path='/' users={usersList} />
+          <UserProfile path='/user/:userName' userName='/:userName' />
+          <UserRepo path='/user/:userName/:repo' />
           <About path='/about' />
           <NotFound default />
         </Router>

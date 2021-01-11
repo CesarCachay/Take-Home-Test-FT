@@ -13,6 +13,7 @@ const Container = styled.div<ContainerProps>`
   width: ${(props) => props.width || 'auto'};
   height: ${(props) => props.height || 'auto'};
   ${(props) => props.bgColor && `background-color: ${props.bgColor};`}
+  ${(props) => props.borderColor && `border: 1px solid ${props.borderColor};`}
 
   @media screen and (max-width: 768px) and (min-width: 360px) {
     ${(props) => props.resDisplay && `display: ${props.resDisplay};`}
