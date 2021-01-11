@@ -41,7 +41,7 @@ const Home: React.FC<{ path: string; users: any }> = ({ users }) => {
       <FlexContainer
         container
         direction='column'
-        alignItems='space-around'
+        alignItems='center'
         margin='20px 0'
       >
         <UsersList users={users} />

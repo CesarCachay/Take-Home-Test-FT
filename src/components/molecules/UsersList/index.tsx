@@ -15,13 +15,13 @@ const UsersContainer = styled(FlexContainer)`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 16px;
+  grid-gap: 32px;
 `;
 
 const UserItem: React.FC<{ user: any }> = ({ user }) => (
-  <Card>
-    <img src={user.avatar_url} alt='user-profile' style={{ width: '60px' }} />
-    <Typography>{user.login}</Typography>
+  <Card shadowLow width='300px'>
+    <img src={user.avatar_url} alt='user-profile' style={{ width: '60px', borderRadius: '100%' }} />
+    <Typography margin='10px 0' fontSize='20px'>{user.login}</Typography>
     <Link to={`user/${user.login}`} title='more-info'>
       <Button
         bgColor={theme.colors.darkBgColor}

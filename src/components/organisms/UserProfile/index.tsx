@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from '@reach/router';
-import { getUserProfile } from 'services';
+import { getUserProfile, getUserRepos } from 'services';
 import { FlexContainer, Typography, Pill, Spinner } from 'components/atoms';
+import { RepoList } from 'components/molecules';
 import theme from 'util/theme';
 
 const StyledLink = styled(Link)`
@@ -39,12 +40,19 @@ const ProfileAvatar = styled.div<{ size: string; img: string }>`
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+  border: 1px solid ${theme.colors.borderColor};
+
+  &:hover {
+    transition: 0.5s;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
 `;
 
 const UserProfile: React.FC<{ path: string; userName: string }> = ({
   userName,
 }) => {
   const [userInfo, setUserInfo] = useState(null);
+  const [reposList, setReposList] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -52,6 +60,24 @@ const UserProfile: React.FC<{ path: string; userName: string }> = ({
       .then((response) => {
         const { data } = response;
         setUserInfo(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    getUserRepos(userName)
+      .then((response) => {
+        const { data } = response;
+        const repoInfo = data.map((repo) => ({
+          id: repo.id,
+          htmlUrl: repo.html_url,
+          name: repo.name,
+          description: repo.description,
+          language: repo.language,
+        }));
+        setReposList(repoInfo);
       })
       .catch((error) => {
         console.error(error);
@@ -69,12 +95,7 @@ const UserProfile: React.FC<{ path: string; userName: string }> = ({
   }
 
   return (
-    <FlexContainer
-      container
-      // justify='center'
-      alignItems='center'
-      direction='column'
-    >
+    <FlexContainer container alignItems='center' direction='column'>
       <FlexContainer width='90%' direction='column' alignItems='center'>
         <FlexContainer container margin='30px 0' alignItems='center'>
           <StyledLink to='/'>Back to Home</StyledLink>
@@ -116,10 +137,22 @@ const UserProfile: React.FC<{ path: string; userName: string }> = ({
             </StyledAnchor>
             <Typography margin='20px 0'>Username: {userInfo.login}</Typography>
             {userInfo.company && (
-              <Typography margin='20px 0'>
-                Company: {userInfo.company}
-              </Typography>
+              <Typography>Company: {userInfo.company}</Typography>
             )}
+            <FlexContainer width='90%' justify='space-around' margin='20px 0'>
+              <Pill bgColor={theme.colors.error} textColor='white'>
+                Followers: {userInfo.followers}
+              </Pill>
+              <Pill bgColor={theme.colors.darkBgColor} textColor='white'>
+                Following: {userInfo.following}
+              </Pill>
+              <Pill bgColor='green' textColor='white'>
+                Public repos: {userInfo.public_repos}
+              </Pill>
+              <Pill bgColor='blue' textColor='white'>
+                Public gists: {userInfo.public_gists}
+              </Pill>
+            </FlexContainer>
           </FlexContainer>
         </FlexContainer>
       </FlexContainer>
@@ -131,25 +164,8 @@ const UserProfile: React.FC<{ path: string; userName: string }> = ({
         justify='center'
         borderColor={theme.colors.borderColor}
       >
-        <FlexContainer width='50%' justify='space-around'>
-          <Pill bgColor={theme.colors.error} textColor='white'>
-            Followers: {userInfo.followers}
-          </Pill>
-          <Pill bgColor={theme.colors.darkBgColor} textColor='white'>
-            Following: {userInfo.following}
-          </Pill>
-          <Pill bgColor='green' textColor='white'>
-            Public repos: {userInfo.public_repos}
-          </Pill>
-          <Pill bgColor='blue' textColor='white'>
-            Public gists: {userInfo.public_gists}
-          </Pill>
-        </FlexContainer>
+        <RepoList repos={reposList} />
       </FlexContainer>
-
-      {/* <FlexContainer>
-        
-      </FlexContainer> */}
     </FlexContainer>
   );
 };

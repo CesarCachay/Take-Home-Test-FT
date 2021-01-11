@@ -9,7 +9,7 @@ const Pill = styled.span<PillProps>`
   color: ${(props) => props.textColor || props.theme.colors.textPrimary};
   padding: ${(props) => props.padding || '5px 15px'};
   margin: ${(props) => props.margin || '0'};
-  font-size: ${(props) => props.fontSize || '16px'};
+  font-size: ${(props) => props.fontSize || '15px'};
   ${(props) => props.clickable && 'cursor: pointer;'}
 `;
 
