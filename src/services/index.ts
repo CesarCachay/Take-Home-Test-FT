@@ -67,3 +67,19 @@ export const getUserRepos = async (username: string) => {
     return error.response.status;
   }
 };
+
+export const getRepo = async (user: string, repo: string) => {
+  try {
+    const response = await axios({
+      method: 'get',
+      url: `${baseUrl}/repos/${user}/${repo}/commits`,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error(error.message);
+    return error.response.status;
+  }
+};

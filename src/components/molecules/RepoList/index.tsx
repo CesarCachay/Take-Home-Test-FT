@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from '@reach/router';
 import { FlexContainer, Typography } from 'components/atoms';
 import { RepoListProps, RepoInfoType } from './types';
+import theme from 'util/theme';
 
 const RepoItemContainer = styled(FlexContainer)`
   background-color: #fff;
@@ -29,14 +31,31 @@ const RepoListContainer = styled(FlexContainer)`
   margin: 0px 30px;
 `;
 
+const StyledLink = styled(Link)`
+  color: white;
+  padding: 10px;
+  background-color: black;
+  text-decoration: none;
+
+  &:hover {
+    color: ${theme.colors.placeholderColor};
+  }
+  &:focus {
+    outline: none;
+  }
+`;
+
 const RepoItem: React.FC<{ data: RepoInfoType }> = ({ data }) => (
   <RepoItemContainer>
     <Typography color='blue' fontSize='18px' fontWeight={700}>
       {data.name}
     </Typography>
     <Typography>{data.description}</Typography>
-    <FlexContainer width='100%' justify='flex-end' alignItems='center'>
-      <Typography margin='0 10px 0 0'>Language: {data.language}</Typography>
+    <FlexContainer width='100%' justify='space-between' alignItems='center'>
+      <StyledLink to={`/repos/${data.owner}/${data.name}`} title='repo-info'>
+        More
+      </StyledLink>
+      <Typography>Language: {data.language || 'Not specified'}</Typography>
     </FlexContainer>
   </RepoItemContainer>
 );

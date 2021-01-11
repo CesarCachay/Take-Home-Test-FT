@@ -45,7 +45,7 @@ const App: React.FC = () => {
           <Router>
             <Home path='/' users={usersList} />
             <UserProfile path='/user/:userName' userName='/:userName' />
-            <UserRepo path='/user/:userName/:repo' />
+            <UserRepo path='/repos/:user/:repo' user=':user' repo=':repo' />
             <About path='/about' />
             <NotFound default />
           </Router>

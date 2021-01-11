@@ -73,6 +73,7 @@ const UserProfile: React.FC<{ path: string; userName: string }> = ({
         const repoInfo = data.map((repo) => ({
           id: repo.id,
           htmlUrl: repo.html_url,
+          owner: userName,
           name: repo.name,
           description: repo.description,
           language: repo.language,
@@ -98,7 +99,10 @@ const UserProfile: React.FC<{ path: string; userName: string }> = ({
     <FlexContainer container alignItems='center' direction='column'>
       <FlexContainer width='90%' direction='column' alignItems='center'>
         <FlexContainer container margin='30px 0' alignItems='center'>
-          <StyledLink to='/'>Back to Home</StyledLink>
+          <StyledLink to='/'>
+            <i className='fa fa-arrow-left' style={{ marginRight: '10px' }}></i>
+            Back to Home
+          </StyledLink>
           <Typography margin='0 8px 0 0'>Hireable:</Typography>
           {userInfo.hireable ? (
             <i className='fas fa-check' style={{ color: 'green' }} />
