@@ -4,5 +4,6 @@ export type InputProps = {
   margin?: string;
   padding?: string;
   fontSize?: string;
+  maxWidth?: string;
   error?: boolean;
 };

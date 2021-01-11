@@ -18,7 +18,6 @@ const App: React.FC = () => {
   }
 `;
   const [usersList, setUsersList] = useState([]);
-  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     getUsers()
@@ -27,7 +26,7 @@ const App: React.FC = () => {
         setUsersList(data);
       })
       .catch((error) => {
-        setError(error);
+        console.error(error);
       });
   }, []);
 

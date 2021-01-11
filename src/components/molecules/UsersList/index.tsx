@@ -6,7 +6,6 @@ import {
   FlexContainer,
   Typography,
   Card,
-  Button,
   Spinner,
 } from 'components/atoms';
 import theme from 'util/theme';

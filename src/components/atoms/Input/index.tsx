@@ -4,6 +4,7 @@ import { InputProps } from './types';
 const Input = styled.input<InputProps>`
   width: ${(props) => props.width || 'auto'};
   ${(props) => props.height && `height: ${props.height};`};
+  ${(props) => props.maxWidth && `max-width: ${props.maxWidth};`}
   font-size: ${(props) => props.fontSize || '15px'};
   padding: ${(props) => props.padding || '15px 30px'};
   margin: ${(props) => props.margin || '0'};

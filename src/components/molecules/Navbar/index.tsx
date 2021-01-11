@@ -15,6 +15,8 @@ const NavbarContainer = styled(FlexContainer)`
 `;
 
 const StyledLink = styled(Link)`
+  display: flex;
+  align-items: center;
   color: #fff;
   padding: 10px;
   margin: 0 30px;
@@ -22,6 +24,14 @@ const StyledLink = styled(Link)`
 
   &:hover {
     color: ${theme.colors.placeholderColor};
+  }
+
+  h5 {
+    padding: 0;
+    margin: 0 0 0 5px;
+    &:hover {
+      color: ${theme.colors.placeholderColor};
+    }
   }
 `;
 
@@ -34,6 +44,7 @@ const Navbar: React.FC = () => {
     >
       <StyledLink to='/'>
         <i className='fab fa-github'></i>
+        <h5>FULLTIMEFORCE TEST</h5>
       </StyledLink>
       <StyledLink to='/about'>About</StyledLink>
     </NavbarContainer>

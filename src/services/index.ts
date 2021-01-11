@@ -56,7 +56,7 @@ export const getUserRepos = async (username: string) => {
   try {
     const response = await axios({
       method: 'get',
-      url: `${baseUrl}/users/${username}/repos?per_page=8${queryAuth}`,
+      url: `${baseUrl}/users/${username}/repos?per_page=8&sort=created:asc${queryAuth}`,
       headers: {
         'Content-Type': 'application/json',
       },
