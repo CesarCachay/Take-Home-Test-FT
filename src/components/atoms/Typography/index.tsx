@@ -1,21 +1,37 @@
-import styled from 'styled-components';
+import React from 'react';
 import { TypographyProps } from './types';
 
-const Typography: React.FC = styled.h2<TypographyProps>`
-  color: ${(props) => props.color || '#000000'};
-  margin: ${(props) => props.margin || '0'};
-  padding: ${(props) => props.padding || '0'};
-  font-size: ${(props) => props.fontSize || '16px'};
-  font-weight: ${(props) => props.fontWeight || '400'};
-  text-align: ${(props) => props.textAlign || 'left'};
-  line-height: ${(props) => props.lineHeight || 'normal'};
-  letter-spacing: ${(props) => props.letterSpacing || 'normal'};
-
-  @media screen and (max-width: 768px) and (min-width: 360px) {
-    ${(props) => props.resWeight && `font-weight: ${props.resWeight};`}
-    ${(props) => props.resSize && `font-size: ${props.resSize};`}
-    ${(props) => props.resAlign && `text-align: ${props.resAlign};`}
-  }
-`;
-
+const Typography: React.FC<TypographyProps> = ({
+  as: Wrapper = 'h2',
+  color,
+  margin,
+  padding,
+  fontSize,
+  fontWeight,
+  textAlign,
+  lineHeight,
+  letterSpacing,
+  style,
+  title,
+  children,
+}) => {
+  return (
+    <Wrapper
+      title={title}
+      style={{
+        color: color || '#000000',
+        margin: margin || 0,
+        padding: padding || 0,
+        fontSize: fontSize || 16,
+        fontWeight: fontWeight || 'normal',
+        textAlign: textAlign || 'left',
+        lineHeight: lineHeight || 'normal',
+        letterSpacing: letterSpacing || 'normal',
+        ...style,
+      }}
+    >
+      {children}
+    </Wrapper>
+  );
+};
 export default Typography;

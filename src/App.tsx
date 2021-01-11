@@ -1,10 +1,12 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import { getUsers, getUserProfile, searchUsers } from 'services';
 import { Router } from '@reach/router';
 import { Navbar } from 'components/molecules';
 import { Home } from 'components/organisms';
 import { About, NotFound } from 'components/layout';
+import theme from 'util/theme';
 
 const App: React.FC = () => {
   const GlobalStyle = createGlobalStyle`
@@ -25,11 +27,13 @@ const App: React.FC = () => {
     <React.Fragment>
       <GlobalStyle />
       <Navbar />
-      <Router>
-        <Home path='/' />
-        <About path='/about' />
-        <NotFound default />
-      </Router>
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Home path='/' />
+          <About path='/about' />
+          <NotFound default />
+        </Router>
+      </ThemeProvider>
     </React.Fragment>
   );
 };

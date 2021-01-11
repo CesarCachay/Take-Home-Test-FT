@@ -1,6 +1,7 @@
 import { CSSProperties } from 'react';
 
 export type TypographyProps = {
+  as?: keyof JSX.IntrinsicElements;
   color?: string;
   margin?: string;
   padding?: string;

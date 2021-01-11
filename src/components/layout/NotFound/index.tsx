@@ -1,18 +1,18 @@
 import React from 'react';
-import { Container, Typography } from 'components/atoms';
+import { FlexContainer, Typography } from 'components/atoms';
 import notFoundImage from 'assets/notFound.gif';
 
 const NotFound: React.FC<{ default: boolean }> = () => {
   return (
-    <Container>
-      <Container>
+    <FlexContainer>
+      <FlexContainer>
         <Typography>Not Found</Typography>
         <Typography>The page are you looking does not exist</Typography>
-      </Container>
-      <Container>
+      </FlexContainer>
+      <FlexContainer>
         <img src={notFoundImage} alt='Page Not Found' />
-      </Container>
-    </Container>
+      </FlexContainer>
+    </FlexContainer>
   );
 };
 

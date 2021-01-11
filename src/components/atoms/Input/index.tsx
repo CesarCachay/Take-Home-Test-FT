@@ -3,11 +3,11 @@ import { InputProps } from './types';
 
 const Input = styled.input<InputProps>`
   width: ${(props) => props.width || 'auto'};
+  ${(props) => props.height && `height: ${props.height};`};
   font-size: ${(props) => props.fontSize || '15px'};
   padding: ${(props) => props.padding || '15px 30px'};
   margin: ${(props) => props.margin || '0'};
   border-radius: 5px;
-  appearance: none;
   border: 1px solid
     ${(props) =>
       props.error ? props.theme.colors.red : props.theme.colors.borderColor};
@@ -17,7 +17,8 @@ const Input = styled.input<InputProps>`
   }
   &:focus {
     outline: none;
-    border-color: ${(props) => props.theme.colors.primary};
+    border-color: dodgerBlue;
+    box-shadow: 0 0 8px 0 dodgerBlue;
   }
 `;
 

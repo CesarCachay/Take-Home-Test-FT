@@ -1,5 +1,6 @@
 export type ButtonProps = {
   width?: string;
+  height?: string;
   bgColor?: string;
   color?: string;
   padding?: string;

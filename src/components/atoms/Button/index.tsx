@@ -4,7 +4,9 @@ import { ButtonProps } from './types';
 const Button = styled.button<ButtonProps>`
   display: flex;
   justify-content: center;
+  align-items: center;
   width: ${(props) => props.width || 'auto'};
+  ${(props) => props.height && `height: ${props.height};`};
   border: ${(props) => (props.border ? `1px solid ${props.border}` : 'none')};
   border-radius: 5px;
   cursor: pointer;

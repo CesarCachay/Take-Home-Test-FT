@@ -1,11 +1,11 @@
 import React from 'react';
-import { Container, Typography } from 'components/atoms';
+import { FlexContainer, Typography } from 'components/atoms';
 import profilePhoto from 'assets/profile_photo.jpeg';
 
 const About: React.FC<{ path: string }> = () => {
   return (
-    <Container>
-      <Container>
+    <FlexContainer>
+      <FlexContainer>
         <img
           src={profilePhoto}
           alt='author-profile-img'
@@ -14,8 +14,8 @@ const About: React.FC<{ path: string }> = () => {
         <Typography>Take Home Test</Typography>
         <Typography>FULLTIMEFORCE</Typography>
         <Typography>By Cesar Cachay</Typography>
-      </Container>
-    </Container>
+      </FlexContainer>
+    </FlexContainer>
   );
 };
 

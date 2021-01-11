@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Container } from 'components/atoms';
+import { FlexContainer } from 'components/atoms';
 import { Link } from '@reach/router';
 
-const NavbarContainer = styled(Container)`
+const NavbarContainer = styled(FlexContainer)`
   justify-content: space-between;
   align-items: center;
   padding: 20px 10px;
