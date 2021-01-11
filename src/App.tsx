@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { ThemeProvider } from 'styled-components';
-import { getUsers, getUserProfile, searchUsers } from 'services';
+import { getUsers } from 'services';
 import { Router } from '@reach/router';
 import { Navbar } from 'components/molecules';
 import { Home } from 'components/organisms';
@@ -16,11 +16,18 @@ const App: React.FC = () => {
     font-family: Open-Sans, Helvetica, Sans-Serif;
   }
 `;
+  const [usersList, setUsersList] = useState([]);
+  const [error, setError] = useState<boolean>(false);
 
-  React.useEffect(() => {
-    getUsers();
-    getUserProfile('cesarCachay');
-    searchUsers('cesarCachay');
+  useEffect(() => {
+    getUsers()
+      .then((response) => {
+        const { data } = response;
+        setUsersList(data);
+      })
+      .catch((error) => {
+        setError(error);
+      });
   }, []);
 
   return (
@@ -29,7 +36,7 @@ const App: React.FC = () => {
       <Navbar />
       <ThemeProvider theme={theme}>
         <Router>
-          <Home path='/' />
+          <Home path='/' users={usersList} />
           <About path='/about' />
           <NotFound default />
         </Router>
