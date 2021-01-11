@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { ThemeProvider } from 'styled-components';
+import { SnackbarProvider } from 'notistack';
 import { getUsers } from 'services';
 import { Router } from '@reach/router';
 import { Navbar } from 'components/molecules';
@@ -35,13 +36,21 @@ const App: React.FC = () => {
       <GlobalStyle />
       <Navbar />
       <ThemeProvider theme={theme}>
-        <Router>
-          <Home path='/' users={usersList} />
-          <UserProfile path='/user/:userName' userName='/:userName' />
-          <UserRepo path='/user/:userName/:repo' />
-          <About path='/about' />
-          <NotFound default />
-        </Router>
+        <SnackbarProvider
+          maxSnack={3}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+        >
+          <Router>
+            <Home path='/' users={usersList} />
+            <UserProfile path='/user/:userName' userName='/:userName' />
+            <UserRepo path='/user/:userName/:repo' />
+            <About path='/about' />
+            <NotFound default />
+          </Router>
+        </SnackbarProvider>
       </ThemeProvider>
     </React.Fragment>
   );

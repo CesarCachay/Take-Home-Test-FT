@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { FlexContainer, Typography, Button } from 'components/atoms';
+import { useSnackbar } from 'notistack';
+import { FlexContainer, Button } from 'components/atoms';
 import { Search, UsersList } from 'components/molecules';
 import theme from 'util/theme';
+import { HomeProps } from './types';
 
 const HomeContainer = styled(FlexContainer)`
   display: block;
@@ -11,8 +13,21 @@ const HomeContainer = styled(FlexContainer)`
   width: 100%;
 `;
 
-const Home: React.FC<{ path: string; users: any }> = ({ users }) => {
+const Home: React.FC<HomeProps> = ({ users }) => {
+  const { enqueueSnackbar } = useSnackbar();
   const [inputValue, setInputValue] = useState<string>('');
+  const [usersList, setUsersList] = useState([]);
+
+  useEffect(() => {
+    if (users.length > 0) {
+      const modifiedUserInfo = users.map((user) => ({
+        id: user.id,
+        avatarUrl: user.avatar_url,
+        name: user.login,
+      }));
+      setUsersList(modifiedUserInfo);
+    }
+  }, [users]);
 
   return (
     <HomeContainer container direction='column'>
@@ -44,7 +59,7 @@ const Home: React.FC<{ path: string; users: any }> = ({ users }) => {
         alignItems='center'
         margin='20px 0'
       >
-        <UsersList users={users} />
+        <UsersList users={usersList} />
       </FlexContainer>
     </HomeContainer>
   );
